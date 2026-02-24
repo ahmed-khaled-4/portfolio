@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { HiExternalLink, HiCode } from 'react-icons/hi';
-import { SiCplusplus, SiPython, SiJavascript, SiHtml5, SiCss3, SiNodedotjs, SiExpress, SiPostgresql, SiGo, SiMongodb, SiRedis, SiReact, SiSocketdotio, SiVite, SiChakraui } from 'react-icons/si';
+import { HiExternalLink, HiLockClosed } from 'react-icons/hi';
+import { SiDotnet, SiSpring, SiPostgresql, SiRabbitmq, SiDocker, SiPython, SiFastapi, SiFlutter, SiFirebase, SiGithub } from 'react-icons/si';
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -12,40 +12,39 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'LinkSphere - Social Media Platform',
-      description: 'A distributed social networking platform built with microservices architecture. Features user profiles, interactive feeds, and social connections using Go API Gateway, Node.js services, and multi-database architecture including PostgreSQL, MongoDB, Neo4j, and Redis.',
-      technologies: ['Go', 'Node.js', 'PostgreSQL', 'MongoDB', 'Redis'],
-      techIcons: [SiGo, SiNodedotjs, SiPostgresql, SiMongodb, SiRedis],
-      link: 'https://github.com/Rehab-M-Esmail/LinkSphere',
-      gradient: 'from-purple-600 to-violet-600',
+      title: 'Multi-Tenant POS Platform',
+      subtitle: 'Distributed Retail System',
+      description: 'Event-driven microservices platform with multi-tenant data isolation and RBAC to support multiple stores within one system. Features an API Gateway, inter-service communication, and containerized deployment with Docker and Traefik.',
+      technologies: ['.NET', 'Spring Boot', 'RabbitMQ', 'PostgreSQL', 'Docker'],
+      techIcons: [SiDotnet, SiSpring, SiRabbitmq, SiPostgresql, SiDocker],
+      link: null,
+      period: 'Jul – Aug 2025',
+      gradient: 'from-cyan-500 to-blue-600',
+      accentColor: 'cyan',
     },
     {
-      title: 'TuneTrail - Music Streaming Platform',
-      description: 'A comprehensive Spotify-inspired streaming platform featuring real-time audio streaming, dual AI-powered assistants (Music Companion & General Assistant), and intelligent music recommendations. Built with Node.js/Express backend, PostgreSQL database, and JWT/OAuth authentication.',
-      technologies: ['Node.js', 'Express', 'PostgreSQL', 'Socket.IO', 'OAuth'],
-      techIcons: [SiNodedotjs, SiExpress, SiPostgresql, SiSocketdotio, SiJavascript],
-      link: 'https://github.com/Ahmed-2451/TuneTrail',
-      gradient: 'from-violet-600 to-purple-700',
+      title: 'AI Comment Generator',
+      subtitle: 'LLM-Powered Documentation',
+      description: 'LLM-powered documentation generator using FastAPI and Ollama. Implements a multi-agent generator/validator pipeline with security filtering and hallucination detection. Supports 20+ programming languages with built-in evaluation metrics.',
+      technologies: ['Python', 'FastAPI', 'Ollama', 'LLM'],
+      techIcons: [SiPython, SiFastapi],
+      link: null,
+      period: 'Dec 2025 – Jan 2026',
+      gradient: 'from-blue-600 to-cyan-700',
+      accentColor: 'blue',
     },
     {
-      title: 'GameStore - Digital Gaming Platform',
-      description: 'A modern game distribution platform inspired by Steam and Epic Games Store. Features comprehensive e-commerce functionality, game library management, user profiles, news sections, and advanced filtering/pagination. Built with React 18, Vite for lightning-fast development, Chakra UI for polished components, and React Router for seamless navigation.',
-      technologies: ['React', 'Vite', 'Chakra UI', 'React Router', 'Axios'],
-      techIcons: [SiReact, SiVite, SiChakraui, SiJavascript],
-      link: 'https://github.com/rofidakhaled/GameStore',
-      gradient: 'from-purple-700 to-indigo-600',
+      title: 'Sehhi',
+      subtitle: 'Cross-Platform Mobile Health App',
+      description: 'Flutter mobile application consuming REST APIs for health data. Features Firebase Authentication with persistent sessions, push notifications via Firebase Cloud Messaging, offline caching, and clean architecture separation using the service/repository pattern.',
+      technologies: ['Flutter', 'Firebase', 'FCM', 'Dart'],
+      techIcons: [SiFlutter, SiFirebase],
+      link: null,
+      period: 'Jan – Feb 2026',
+      gradient: 'from-cyan-600 to-blue-700',
+      accentColor: 'sky',
     },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -60,7 +59,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-800/20">
+    <section id="projects" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,116 +68,110 @@ const Projects = () => {
           className="text-center mb-16"
           ref={ref}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            My <span className="gradient-text">Projects</span>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            Featured <span className="gradient-text">Projects</span>
           </h2>
           <motion.div
             initial={{ width: 0 }}
             animate={inView ? { width: 80 } : {}}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="h-1 bg-gradient-to-r from-purple-500 to-violet-500 mx-auto rounded-full"
+            className="h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"
           />
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            Here are some of the projects I've worked on, showcasing my skills in various technologies and programming languages.
+          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+            A selection of projects showcasing my skills in distributed systems, AI tooling, and mobile development.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               variants={cardVariants}
-              whileHover={{ y: -3, scale: 1.01 }}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -6, scale: 1.02 }}
               className="group"
             >
               <div className="card h-full relative overflow-hidden">
-                <div className="relative z-10">
-                  {/* Gradient Header */}
-                  <div className={`w-full h-2 bg-gradient-to-r ${project.gradient} rounded-t-xl -m-6 mb-4`} />
+                {/* Gradient top border */}
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${project.gradient}`} />
+                
+                <div className="relative z-10 pt-2">
+                  {/* Period badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`inline-flex items-center text-xs font-semibold text-${project.accentColor}-400 bg-${project.accentColor}-500/10 border border-${project.accentColor}-500/20 rounded-lg px-3 py-1.5`}>
+                      {project.period}
+                    </span>
+                    {!project.link && (
+                      <span className="inline-flex items-center gap-1 text-xs text-gray-500 bg-gray-700/30 rounded-lg px-2 py-1">
+                        <HiLockClosed className="w-3 h-3" />
+                        Private
+                      </span>
+                    )}
+                  </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-purple-400 transition-colors duration-200">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-200">
                     {project.title}
                   </h3>
+                  <p className="text-sm text-gray-500 mb-4">{project.subtitle}</p>
 
                   {/* Description */}
                   <p className="text-gray-400 mb-6 leading-relaxed text-sm">
                     {project.description}
                   </p>
 
+                  {/* Tech Icons */}
+                  <div className="flex items-center gap-3 mb-4">
+                    {project.techIcons.map((Icon, iconIndex) => (
+                      <div
+                        key={iconIndex}
+                        className={`w-8 h-8 rounded-lg bg-gray-700/30 flex items-center justify-center text-${project.accentColor}-400 group-hover:bg-gray-700/50 transition-all duration-200`}
+                      >
+                        <Icon size={18} />
+                      </div>
+                    ))}
+                  </div>
+
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-gray-700/50 text-xs rounded-full border border-gray-600/50 hover:border-purple-500/50 transition-colors duration-200"
+                        className="px-3 py-1 bg-gray-700/40 text-gray-300 text-xs rounded-md border border-gray-600/30 hover:border-cyan-500/40 transition-colors duration-200"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-
-                  {/* Tech Icons & Link */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex space-x-3">
-                      {project.techIcons.map((Icon, iconIndex) => (
-                        <div
-                          key={iconIndex}
-                          className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
-                        >
-                          <Icon size={20} />
-                        </div>
-                      ))}
-                    </div>
-
-                    {project.link && (
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors duration-200 text-sm"
-                      >
-                        <HiExternalLink size={16} />
-                        <span>View</span>
-                      </motion.a>
-                    )}
-                  </div>
                 </div>
 
-                {/* Hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-xl" />
+                {/* Hover gradient overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br from-${project.accentColor}-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none`} />
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Call to Action */}
+        {/* GitHub CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.4, delay: 0.5 }}
+          className="text-center mt-12"
         >
-          <p className="text-gray-400 mb-6">
-            Want to see more of my work?
-          </p>
           <motion.a
-            href="https://github.com/Ahmed-2451"
+            href="https://github.com/ahmed-khaled-4"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="btn-primary inline-flex items-center space-x-2"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800/60 border border-gray-700/40 rounded-lg text-gray-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-all duration-200"
           >
-            <HiCode size={20} />
-            <span>View All Projects</span>
+            <SiGithub size={20} />
+            <span className="font-medium">View More on GitHub</span>
+            <HiExternalLink size={16} />
           </motion.a>
         </motion.div>
       </div>
@@ -186,4 +179,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

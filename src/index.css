@@ -7,34 +7,38 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   
   body {
     font-family: 'Inter', sans-serif;
     @apply bg-gray-900 text-white;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700
-           text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 
-           hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105;
+    @apply bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700
+           text-white px-8 py-3.5 rounded-xl font-semibold transition-all duration-200 
+           hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-105 text-sm;
   }
   
   .btn-secondary {
-    @apply border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white 
-           px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-500 
+           px-8 py-3.5 rounded-xl font-semibold transition-all duration-200 text-sm;
   }
   
   .card {
-    @apply bg-gray-800/60 backdrop-blur-sm border border-gray-700/40 rounded-xl p-6
-           hover:bg-gray-800/80 hover:border-purple-500/30 transition-all duration-200
-           hover:shadow-lg hover:shadow-purple-500/10;
+    @apply bg-gray-800/50 backdrop-blur-md border border-gray-700/30 rounded-2xl p-6
+           hover:bg-gray-800/70 hover:border-cyan-500/30 transition-all duration-300
+           hover:shadow-xl hover:shadow-cyan-500/10;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent;
   }
 }
 
@@ -48,11 +52,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-purple-500 rounded-full;
+  @apply bg-cyan-500 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-purple-400;
+  @apply bg-cyan-400;
 }
 
 /* Smooth animations */
@@ -68,4 +72,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-} 
+}

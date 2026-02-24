@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -10,7 +11,7 @@ import { motion } from 'framer-motion';
 
 function App() {
   return (
-    <div className="App relative">
+    <div className="App relative overflow-x-hidden w-full">
       {/* Particle Background */}
       <ParticleBackground />
       
@@ -21,6 +22,7 @@ function App() {
       <div className="relative z-10">
         <Hero />
         <About />
+        <Experience />
         <Skills />
         <Projects />
         <Contact />
@@ -36,7 +38,7 @@ function App() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col items-center space-y-4 text-center">
                 <p className="text-gray-400 text-sm">
-                  © 2024 Ahmed Khaled. All rights reserved.
+                  © 2026 Ahmed Khaled. All rights reserved.
                 </p>
                 
                 <div className="flex items-center space-x-2">

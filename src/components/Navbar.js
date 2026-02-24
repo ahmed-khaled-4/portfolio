@@ -12,7 +12,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -42,6 +42,7 @@ const Navbar = () => {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
@@ -70,23 +71,23 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
                 whileHover={{ y: -1 }}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-3 py-2 transition-colors duration-200 ${
+                className={`relative px-2 lg:px-3 py-2 text-sm lg:text-base transition-colors duration-200 ${
                   activeSection === item.id 
-                    ? 'text-purple-400' 
-                    : 'text-gray-300 hover:text-purple-400'
+                    ? 'text-cyan-400' 
+                    : 'text-gray-300 hover:text-cyan-400'
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-400 rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   />
                 )}
@@ -98,7 +99,7 @@ const Navbar = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-purple-400 transition-colors duration-200"
+            className="md:hidden text-gray-300 hover:text-cyan-400 transition-colors duration-200"
           >
             {isMobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
           </motion.button>
@@ -123,8 +124,8 @@ const Navbar = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={`block w-full text-left px-3 py-2 rounded-lg transition-colors duration-200 ${
                     activeSection === item.id 
-                      ? 'text-purple-400 bg-purple-500/10' 
-                      : 'text-gray-300 hover:text-purple-400 hover:bg-gray-700/50'
+                      ? 'text-cyan-400 bg-cyan-500/10' 
+                      : 'text-gray-300 hover:text-cyan-400 hover:bg-gray-700/50'
                   }`}
                 >
                   {item.label}
