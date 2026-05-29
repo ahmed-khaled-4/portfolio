@@ -4,97 +4,41 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0ea5e9" />
-    <meta name="description" content="Ahmed Khaled - Software Developer Portfolio. Showcasing projects in Python, C++, JavaScript, and web development." />
-    <meta name="keywords" content="Ahmed Khaled, Software Developer, Portfolio, Python, C++, JavaScript, React, Web Development, Cairo, Egypt" />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta
+      name="description"
+      content="Ahmed Khaled — Full-Stack Software Engineer in Cairo. .NET, Spring Boot, React, PostgreSQL, Docker. Open to opportunities."
+    />
+    <meta
+      name="keywords"
+      content="Ahmed Khaled, Full-Stack Developer, Software Engineer, React, .NET, Spring Boot, Cairo, Egypt, Portfolio"
+    />
     <meta name="author" content="Ahmed Khaled" />
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Ahmed Khaled - Software Developer" />
-    <meta property="og:description" content="Professional portfolio showcasing software development projects and skills" />
+
+    <meta property="og:title" content="Ahmed Khaled — Full-Stack Software Engineer" />
+    <meta
+      property="og:description"
+      content="Production-grade full-stack engineer. Award-winning intern at Konecta. Open to hire."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ahmed-khaled-portfolio.com" />
-    
-    <!-- Twitter Card Meta Tags -->
+
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ahmed Khaled - Software Developer" />
-    <meta name="twitter:description" content="Professional portfolio showcasing software development projects and skills" />
-    
+    <meta name="twitter:title" content="Ahmed Khaled — Full-Stack Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Production-grade full-stack engineer. Award-winning intern at Konecta. Open to hire."
+    />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <title>Ahmed Khaled - Software Developer Portfolio</title>
-    
-    <style>
-      /* Loading screen styles */
-      #loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease-out;
-      }
-      
-      .loading-spinner {
-        width: 50px;
-        height: 50px;
-        border: 3px solid rgba(59, 130, 246, 0.3);
-        border-top: 3px solid #3b82f6;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      .loading-text {
-        color: #64748b;
-        margin-top: 20px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-      }
-    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <title>Ahmed Khaled — Full-Stack Software Engineer</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-      <div style="text-align: center;">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">Loading Portfolio...</div>
-      </div>
-    </div>
-    
-    <!-- React App Root -->
     <div id="root"></div>
-    
-    <script>
-      // Hide loading screen when React loads
-      window.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-          const loadingScreen = document.getElementById('loading-screen');
-          if (loadingScreen) {
-            loadingScreen.style.opacity = '0';
-            setTimeout(function() {
-              loadingScreen.style.display = 'none';
-            }, 500);
-          }
-        }, 1000);
-      });
-    </script>
   </body>
-</html> 
+</html>

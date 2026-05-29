@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 
 const Navbar = () => {
@@ -9,19 +9,18 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      // Update active section
+      setIsScrolled(window.scrollY > 24);
+
       const sections = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
-      const currentSection = sections.find(section => {
+      const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          return rect.top <= 120 && rect.bottom >= 120;
         }
         return false;
       });
-      
+
       if (currentSection) {
         setActiveSection(currentSection);
       }
@@ -40,7 +39,6 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
@@ -49,94 +47,103 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
-        isScrolled 
-          ? 'bg-gray-900/95 backdrop-blur-lg border-b border-gray-700/50 shadow-lg' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="text-2xl font-bold gradient-text cursor-pointer"
+    <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4 sm:px-6">
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className={`mx-auto max-w-4xl rounded-full border transition-all duration-300 ${
+          isScrolled
+            ? 'bg-paper/90 backdrop-blur-xl border-rule shadow-[0_8px_32px_oklch(0%_0_0_/_0.35)]'
+            : 'bg-paper/60 backdrop-blur-md border-rule/70'
+        }`}
+        aria-label="Primary"
+      >
+        <div className="flex items-center justify-between gap-4 px-4 py-2.5 sm:px-5">
+          <button
+            type="button"
             onClick={() => scrollToSection('home')}
+            className="font-display text-lg font-medium text-ink hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus rounded-md px-1"
           >
-            Ahmed Khaled
-          </motion.div>
+            AK
+          </button>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 lg:space-x-8">
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <motion.button
+              <button
                 key={item.id}
-                whileHover={{ y: -1 }}
+                type="button"
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-2 lg:px-3 py-2 text-sm lg:text-base transition-colors duration-200 ${
-                  activeSection === item.id 
-                    ? 'text-cyan-400' 
-                    : 'text-gray-300 hover:text-cyan-400'
+                className={`relative px-3 py-2 text-sm font-medium rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus ${
+                  activeSection === item.id
+                    ? 'text-ink bg-accent-muted'
+                    : 'text-ink-2 hover:text-ink'
                 }`}
               >
                 {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  />
-                )}
-              </motion.button>
+              </button>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            whileTap={{ scale: 0.95 }}
+          <div className="hidden md:block">
+            <button
+              type="button"
+              onClick={() => scrollToSection('contact')}
+              className="btn-primary !py-2 !px-4 !text-xs"
+            >
+              Hire me
+            </button>
+          </div>
+
+          <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+            className="md:hidden p-2 text-ink-2 hover:text-ink rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus"
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            {isMobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-          </motion.button>
+            {isMobileMenuOpen ? <HiX size={22} /> : <HiMenu size={22} />}
+          </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-gray-800/95 backdrop-blur-lg rounded-lg mt-2 overflow-hidden"
-          >
-            <div className="px-4 py-2 space-y-1">
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left px-3 py-2 rounded-lg transition-colors duration-200 ${
-                    activeSection === item.id 
-                      ? 'text-cyan-400 bg-cyan-500/10' 
-                      : 'text-gray-300 hover:text-cyan-400 hover:bg-gray-700/50'
-                  }`}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden overflow-hidden border-t border-rule/60"
+            >
+              <div className="px-4 py-3 space-y-1">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => scrollToSection(item.id)}
+                    className={`block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      activeSection === item.id
+                        ? 'text-ink bg-accent-muted'
+                        : 'text-ink-2 hover:text-ink hover:bg-paper-3'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('contact')}
+                  className="btn-primary w-full mt-2 !text-sm"
                 >
-                  {item.label}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </motion.nav>
+                  Hire me
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </header>
   );
 };
 
-export default Navbar; 
+export default Navbar;
