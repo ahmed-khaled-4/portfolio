@@ -64,13 +64,13 @@ const Skills = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="skills" className="py-24 lg:py-32 border-t border-rule/60">
+    <section id="skills" className="section-y border-t border-rule/60">
       <div className="section-shell" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.45 }}
-          className="mb-14 max-w-2xl"
+          className="mb-10 lg:mb-12 max-w-2xl"
         >
           <p className="section-label">Skills</p>
           <h2 className="section-title">The stack I bring on day one.</h2>

@@ -34,19 +34,19 @@ const Experience = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="experience" className="py-24 lg:py-32 bg-paper-2/40 border-t border-rule/60">
+    <section id="experience" className="section-y bg-paper-2/40 border-t border-rule/60">
       <div className="section-shell" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.45 }}
-          className="mb-14"
+          className="mb-10 lg:mb-12"
         >
           <p className="section-label">Experience</p>
           <h2 className="section-title">Where I have shipped real software.</h2>
         </motion.div>
 
-        <div className="relative max-w-3xl">
+        <div className="relative max-w-4xl">
           <div className="absolute left-[7px] top-2 bottom-2 w-px bg-rule hidden sm:block" aria-hidden="true" />
 
           <div className="space-y-10">

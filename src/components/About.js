@@ -22,13 +22,13 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 lg:py-32 border-t border-rule/60">
+    <section id="about" className="section-y border-t border-rule/60">
       <div className="section-shell" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.45 }}
-          className="max-w-3xl mb-14"
+          className="max-w-4xl mb-10 lg:mb-12"
         >
           <p className="section-label">About</p>
           <h2 className="section-title">
@@ -40,7 +40,7 @@ const About = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-14">
+        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -80,10 +80,10 @@ const About = () => {
             {highlights.map((item, index) => (
               <div
                 key={item.title}
-                className="p-5 rounded-xl border border-rule bg-paper-2/50 hover:border-accent/25 transition-colors"
+                className="p-4 rounded-xl border border-rule bg-paper-2/50 hover:border-accent/25 transition-colors"
               >
                 <p className="font-mono text-xs text-accent mb-2">{String(index + 1).padStart(2, '0')}</p>
-                <h3 className="text-lg font-semibold text-ink mb-2">{item.title}</h3>
+                <h3 className="text-base font-semibold text-ink mb-1.5">{item.title}</h3>
                 <p className="text-sm text-ink-2 leading-relaxed">{item.description}</p>
               </div>
             ))}

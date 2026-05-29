@@ -5,9 +5,9 @@ import { HiLockClosed, HiExternalLink } from 'react-icons/hi';
 import { SiGithub, SiDotnet, SiSpring, SiRabbitmq, SiPostgresql, SiDocker, SiPython, SiFastapi, SiFlutter, SiFirebase } from 'react-icons/si';
 
 const previewStyles = {
-  pos: 'bg-[linear-gradient(135deg,oklch(22%_0.03_260)_0%,oklch(18%_0.04_265)_100%)]',
-  ai: 'bg-[linear-gradient(135deg,oklch(20%_0.04_290)_0%,oklch(16%_0.03_260)_100%)]',
-  sehhi: 'bg-[linear-gradient(135deg,oklch(21%_0.05_150)_0%,oklch(17%_0.03_260)_100%)]',
+  pos: 'bg-[linear-gradient(135deg,oklch(19%_0.03_48)_0%,oklch(15%_0.04_55)_100%)]',
+  ai: 'bg-[linear-gradient(135deg,oklch(17%_0.04_190)_0%,oklch(13%_0.03_48)_100%)]',
+  sehhi: 'bg-[linear-gradient(135deg,oklch(18%_0.05_155)_0%,oklch(14%_0.03_48)_100%)]',
 };
 
 const projects = [
@@ -92,13 +92,13 @@ const Projects = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="projects" className="py-24 lg:py-32 bg-paper-2/40 border-t border-rule/60">
+    <section id="projects" className="section-y bg-paper-2/40 border-t border-rule/60">
       <div className="section-shell" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.45 }}
-          className="mb-14 max-w-2xl"
+          className="mb-10 lg:mb-12 max-w-2xl"
         >
           <p className="section-label">Projects</p>
           <h2 className="section-title">Selected builds that show range.</h2>

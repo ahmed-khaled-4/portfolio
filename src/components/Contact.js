@@ -37,16 +37,16 @@ const Contact = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="contact" className="py-24 lg:py-32 border-t border-rule/60">
+    <section id="contact" className="section-y border-t border-rule/60">
       <div className="section-shell" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.45 }}
-          className="card !p-8 sm:!p-12 text-center max-w-3xl mx-auto mb-10"
+          className="card !p-6 sm:!p-10 text-center max-w-2xl mx-auto mb-8"
         >
           <p className="section-label !mb-4">Contact</p>
-          <h2 className="font-display text-3xl sm:text-4xl font-medium text-ink text-balance mb-4">
+          <h2 className="font-display text-[length:var(--text-display-s)] font-medium text-ink text-balance mb-3">
             Ready to move fast on a full-stack hire?
           </h2>
           <p className="text-ink-2 leading-relaxed mb-8 max-w-xl mx-auto">

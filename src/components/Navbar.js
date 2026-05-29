@@ -52,7 +52,7 @@ const Navbar = () => {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className={`mx-auto max-w-4xl rounded-full border transition-all duration-300 ${
+        className={`mx-auto max-w-5xl rounded-full border transition-all duration-300 ${
           isScrolled
             ? 'bg-paper/90 backdrop-blur-xl border-rule shadow-[0_8px_32px_oklch(0%_0_0_/_0.35)]'
             : 'bg-paper/60 backdrop-blur-md border-rule/70'

@@ -9,13 +9,13 @@ modern-minimal
 - Landing (single page): Split Studio hero, timeline experience, bento projects, compact skill matrix, statement contact
 
 ## Theme
-- `--color-paper`   oklch(14% 0.02 260)
-- `--color-paper-2` oklch(18% 0.025 260)
-- `--color-ink`     oklch(96% 0.01 90)
-- `--color-ink-2`   oklch(72% 0.02 260)
-- `--color-rule`    oklch(28% 0.02 260)
-- `--color-accent`  oklch(62% 0.14 265)
-- `--color-focus`   oklch(70% 0.16 265)
+- `--color-paper`   oklch(11% 0.018 48)
+- `--color-paper-2` oklch(15% 0.022 46)
+- `--color-ink`     oklch(97% 0.012 88)
+- `--color-ink-2`   oklch(74% 0.025 75)
+- `--color-rule`    oklch(27% 0.025 48)
+- `--color-accent`  oklch(73% 0.11 58)
+- `--color-focus`   oklch(76% 0.12 58)
 
 ## Typography
 - Display: Fraunces, weight 500
