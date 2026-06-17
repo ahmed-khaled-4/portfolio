@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { HiLockClosed, HiExternalLink, HiClock } from 'react-icons/hi';
+import { HiLockClosed, HiExternalLink, HiClock, HiChevronDown } from 'react-icons/hi';
 import { SiGithub, SiDotnet, SiSpring, SiRabbitmq, SiPostgresql, SiDocker, SiPython, SiFastapi, SiFlutter, SiFirebase } from 'react-icons/si';
 
 const previewStyles = {
@@ -92,9 +92,9 @@ const openSource = [
   },
 ];
 
-const ProjectPreview = ({ type, title }) => (
+const ProjectPreview = ({ type, title, featured }) => (
   <div
-    className={`relative h-44 sm:h-52 overflow-hidden border-b border-rule ${previewStyles[type]}`}
+    className={`relative ${featured ? 'h-52 sm:h-64 lg:h-72' : 'h-44 sm:h-52'} overflow-hidden border-b border-rule ${previewStyles[type]}`}
     aria-hidden="true"
   >
     <div className="absolute inset-0 opacity-30 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -118,7 +118,7 @@ const ProjectPreview = ({ type, title }) => (
         <p>&gt; generator.validate()</p>
         <p>&gt; filter.security()</p>
         <p>&gt; detect.hallucination()</p>
-        <p className="text-ink-3 mt-3">// 20+ languages supported</p>
+        <p className="text-ink-3 mt-3">{'// 20+ languages supported'}</p>
       </div>
     )}
     {type === 'sehhi' && (
@@ -160,8 +160,131 @@ const ProjectPreview = ({ type, title }) => (
   </div>
 );
 
+const ProjectCard = ({ project, index, isOpen, onToggle, inView }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 16 }}
+    animate={inView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.45, delay: index * 0.09, ease: [0.16, 1, 0.3, 1] }}
+    className={`card !p-0 overflow-hidden ${isOpen ? 'exp-card-open' : ''} ${project.featured ? 'lg:col-span-2' : ''}`}
+  >
+    <ProjectPreview type={project.preview} title={project.subtitle} featured={project.featured} />
+
+    <button
+      onClick={onToggle}
+      className="exp-header w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-inset"
+      aria-expanded={isOpen}
+    >
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-wrap items-center gap-2 mb-1.5">
+          <h3 className="text-lg sm:text-xl font-semibold text-ink">{project.title}</h3>
+          {project.wip && (
+            <span className="inline-flex items-center gap-1.5 text-xs text-ink-3">
+              <HiClock className="w-3 h-3" />
+              In progress
+            </span>
+          )}
+        </div>
+        <p className="text-accent font-medium text-sm mb-0.5">{project.subtitle}</p>
+        <p className="font-mono text-xs text-ink-3">{project.period}</p>
+      </div>
+
+      <motion.div
+        animate={{ rotate: isOpen ? 180 : 0 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="mt-1 shrink-0"
+      >
+        <HiChevronDown
+          className={`w-5 h-5 transition-colors duration-200 ${
+            isOpen ? 'text-accent' : 'text-ink-3 group-hover:text-accent'
+          }`}
+        />
+      </motion.div>
+    </button>
+
+    <AnimatePresence initial={false}>
+      {isOpen && (
+        <motion.div
+          key="body"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{
+            height: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+            opacity: { duration: 0.25, ease: 'easeOut' },
+          }}
+          style={{ overflow: 'hidden' }}
+        >
+          <div className="px-5 sm:px-6 pb-6 border-t border-rule/50">
+            <motion.p
+              className="text-sm text-ink-2 leading-relaxed mt-4 mb-5"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05, duration: 0.3 }}
+            >
+              {project.description}
+            </motion.p>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {project.technologies.map((tech, i) => (
+                <motion.span
+                  key={tech}
+                  className="chip !text-[11px]"
+                  initial={{ opacity: 0, scale: 0.75, y: 6 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: 0.08 + i * 0.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
+
+            <motion.div
+              className="flex items-center justify-between pt-1"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.18, duration: 0.3 }}
+            >
+              <div className="flex items-center gap-2 text-ink-3">
+                {project.icons.map((Icon, i) => (
+                  <Icon key={i} className="w-4 h-4" aria-hidden="true" />
+                ))}
+              </div>
+              <div className="flex items-center gap-2">
+                {!project.githubUrl && !project.wip && (
+                  <span className="inline-flex items-center gap-1.5 text-xs text-ink-3">
+                    <HiLockClosed className="w-3 h-3" />
+                    Private repo
+                  </span>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-accent hover:text-ink transition-colors"
+                  >
+                    <SiGithub className="w-3 h-3" />
+                    View code
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </motion.article>
+);
+
 const Projects = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [openIndices, setOpenIndices] = useState([0]);
+
+  const toggleProject = (index) => {
+    setOpenIndices(prev =>
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
+  };
 
   return (
     <section id="projects" className="section-y bg-paper-2/40 border-t border-rule/60">
@@ -181,57 +304,14 @@ const Projects = () => {
 
         <div className="grid lg:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <motion.article
+            <ProjectCard
               key={project.title}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: index * 0.1 }}
-              className={`card !p-0 overflow-hidden ${project.featured ? 'lg:col-span-2 lg:grid lg:grid-cols-2' : ''}`}
-            >
-              <ProjectPreview type={project.preview} title={project.subtitle} />
-              <div className={`p-6 ${project.featured ? 'flex flex-col justify-center' : ''}`}>
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <span className="font-mono text-xs text-accent">{project.period}</span>
-                  <div className="flex items-center gap-2">
-                    {project.wip && (
-                      <span className="inline-flex items-center gap-1 text-xs text-ink-3">
-                        <HiClock className="w-3 h-3" />
-                        In progress
-                      </span>
-                    )}
-                    {!project.githubUrl && !project.wip && (
-                      <span className="inline-flex items-center gap-1 text-xs text-ink-3">
-                        <HiLockClosed className="w-3 h-3" />
-                        Private repo
-                      </span>
-                    )}
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-accent hover:text-ink transition-colors"
-                      >
-                        <SiGithub className="w-3 h-3" />
-                        View code
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-ink mb-1">{project.title}</h3>
-                <p className="text-sm text-ink-2 leading-relaxed mb-5">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="chip !text-[11px]">{tech}</span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 text-ink-3">
-                  {project.icons.map((Icon, i) => (
-                    <Icon key={i} className="w-4 h-4" aria-hidden="true" />
-                  ))}
-                </div>
-              </div>
-            </motion.article>
+              project={project}
+              index={index}
+              isOpen={openIndices.includes(index)}
+              onToggle={() => toggleProject(index)}
+              inView={inView}
+            />
           ))}
         </div>
 
