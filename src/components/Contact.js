@@ -19,14 +19,14 @@ const contactLinks = [
   },
   {
     label: 'LinkedIn',
-    value: 'ahmed-khaled-4b8485250',
+    value: 'linkedin.com/in/Ahmed-Khaled',
     href: 'https://www.linkedin.com/in/ahmed-khaled-4b8485250',
     Icon: SiLinkedin,
     external: true,
   },
   {
     label: 'GitHub',
-    value: 'ahmed-khaled-4',
+    value: 'github.com/ahmed-khaled-4',
     href: 'https://github.com/ahmed-khaled-4',
     Icon: SiGithub,
     external: true,
