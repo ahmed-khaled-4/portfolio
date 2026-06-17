@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaJava } from 'react-icons/fa';
 import {
   SiCsharp,
   SiJavascript,
   SiPython,
   SiDart,
-  SiJava,
   SiDotnet,
   SiSpring,
   SiNodedotjs,
@@ -27,7 +27,7 @@ const skillGroups = [
     label: 'Languages',
     items: [
       { name: 'C#', Icon: SiCsharp },
-      { name: 'Java', Icon: SiJava },
+      { name: 'Java', Icon: FaJava },
       { name: 'JavaScript', Icon: SiJavascript },
       { name: 'Python', Icon: SiPython },
       { name: 'Dart', Icon: SiDart },
