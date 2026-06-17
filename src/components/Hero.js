@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiArrowRight, HiMail } from 'react-icons/hi';
+import { HiArrowRight, HiMail, HiDownload } from 'react-icons/hi';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import HeroHeadline3D from './HeroHeadline3D';
 import ProfileCard3D from './ProfileCard3D';
@@ -64,6 +64,14 @@ const Hero = () => {
               <button type="button" onClick={scrollToProjects} className="btn-secondary btn-lg">
                 View selected work
               </button>
+              <a
+                href="/Ahmed_Khaled_CV.pdf"
+                download
+                className="btn-secondary btn-lg inline-flex items-center gap-2"
+              >
+                <HiDownload size={16} />
+                Download CV
+              </a>
             </div>
 
             <div className="flex items-center gap-4">
