@@ -1,35 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { HiLockClosed, HiExternalLink } from 'react-icons/hi';
+import { HiLockClosed, HiExternalLink, HiClock } from 'react-icons/hi';
 import { SiGithub, SiDotnet, SiSpring, SiRabbitmq, SiPostgresql, SiDocker, SiPython, SiFastapi, SiFlutter, SiFirebase } from 'react-icons/si';
 
 const previewStyles = {
   pos: 'bg-[linear-gradient(135deg,oklch(19%_0.03_48)_0%,oklch(15%_0.04_55)_100%)]',
   ai: 'bg-[linear-gradient(135deg,oklch(17%_0.04_190)_0%,oklch(13%_0.03_48)_100%)]',
   sehhi: 'bg-[linear-gradient(135deg,oklch(18%_0.05_155)_0%,oklch(14%_0.03_48)_100%)]',
+  iot: 'bg-[linear-gradient(135deg,oklch(16%_0.04_230)_0%,oklch(13%_0.03_48)_100%)]',
+  qassem: 'bg-[linear-gradient(135deg,oklch(18%_0.05_300)_0%,oklch(14%_0.03_48)_100%)]',
 };
 
 const projects = [
   {
     title: 'Multi-Tenant POS Platform',
     subtitle: 'Distributed retail system',
-    description: 'Event-driven microservices with multi-tenant isolation, RBAC, API gateway, and Docker + Traefik deployment.',
+    description: 'Event-driven microservices with multi-tenant data isolation, RBAC, API gateway, and Docker + Traefik deployment.',
     period: 'Jul – Aug 2025',
     technologies: ['.NET', 'Spring Boot', 'RabbitMQ', 'PostgreSQL', 'Docker'],
     icons: [SiDotnet, SiSpring, SiRabbitmq, SiPostgresql, SiDocker],
     preview: 'pos',
     featured: true,
+    githubUrl: null,
   },
   {
     title: 'AI Comment Generator',
     subtitle: 'LLM documentation pipeline',
     description: 'FastAPI + Ollama multi-agent generator with security filtering and hallucination detection across 20+ languages.',
     period: 'Dec 2025 – Jan 2026',
-    technologies: ['Python', 'FastAPI', 'Ollama'],
+    technologies: ['Python', 'FastAPI', 'Ollama', 'CrewAI'],
     icons: [SiPython, SiFastapi],
     preview: 'ai',
     featured: false,
+    githubUrl: 'https://github.com/ahmed-khaled-4/ai-comment-generator',
+  },
+  {
+    title: 'IOT-Project',
+    subtitle: 'Hybrid IoT campus network',
+    description: 'Distributed campus with 200 MQTT/CoAP nodes, 10 Node-RED floor gateways, ThingsBoard dashboards, and TLS/DTLS security — all in Docker.',
+    period: 'May 2026',
+    technologies: ['Python', 'asyncio', 'MQTT', 'CoAP', 'Docker'],
+    icons: [SiPython, SiDocker],
+    preview: 'iot',
+    featured: false,
+    githubUrl: 'https://github.com/ahmed-khaled-4/IOT-Project',
   },
   {
     title: 'Sehhi',
@@ -40,6 +55,40 @@ const projects = [
     icons: [SiFlutter, SiFirebase],
     preview: 'sehhi',
     featured: false,
+    githubUrl: null,
+  },
+  {
+    title: 'Qassem',
+    subtitle: 'Physics-driven adventure game',
+    description: 'Single-player Unreal Engine 5 graduation project with AI-based character behavior, event-driven mechanics, and performance-optimized gameplay systems.',
+    period: 'Sep 2025 – present',
+    technologies: ['Unreal Engine 5', 'C++', 'Blueprint'],
+    icons: [],
+    preview: 'qassem',
+    featured: false,
+    githubUrl: null,
+    wip: true,
+  },
+];
+
+const openSource = [
+  {
+    title: 'HabitForge',
+    description: 'Full-stack habit tracker with JWT auth and progress charts',
+    stack: 'React · Express · SQLite',
+    url: 'https://github.com/ahmed-khaled-4/HabitForge',
+  },
+  {
+    title: 'TuneTrail',
+    description: 'Spotify-inspired music streaming app with Audius API integration',
+    stack: 'React · Node.js',
+    url: 'https://github.com/ahmed-khaled-4/TuneTrail',
+  },
+  {
+    title: 'linknest',
+    description: 'Smart link shortener with analytics and password protection',
+    stack: 'Node.js · Express',
+    url: 'https://github.com/ahmed-khaled-4/linknest',
   },
 ];
 
@@ -69,7 +118,7 @@ const ProjectPreview = ({ type, title }) => (
         <p>&gt; generator.validate()</p>
         <p>&gt; filter.security()</p>
         <p>&gt; detect.hallucination()</p>
-        <p className="text-ink-3 mt-3">{'// 20+ languages supported'}</p>
+        <p className="text-ink-3 mt-3">// 20+ languages supported</p>
       </div>
     )}
     {type === 'sehhi' && (
@@ -81,6 +130,29 @@ const ProjectPreview = ({ type, title }) => (
             <div className="h-1.5 bg-ink/10 rounded w-4/5" />
             <div className="h-8 bg-success/20 rounded mt-4" />
           </div>
+        </div>
+      </div>
+    )}
+    {type === 'iot' && (
+      <div className="absolute inset-6">
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="w-6 h-6 rounded border border-accent/30 bg-accent/10 flex items-center justify-center">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent/60" />
+            </div>
+          ))}
+        </div>
+        <p className="font-mono text-[9px] text-accent/70">100 MQTT nodes &middot; 100 CoAP nodes</p>
+        <p className="font-mono text-[9px] text-ink-3">10 Node-RED gateways &middot; ThingsBoard</p>
+      </div>
+    )}
+    {type === 'qassem' && (
+      <div className="absolute inset-6 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-2xl border border-accent/30 bg-accent/10 mx-auto mb-3 flex items-center justify-center">
+            <span className="font-mono text-accent text-2xl font-bold">Q</span>
+          </div>
+          <p className="font-mono text-[10px] text-ink-3">Unreal Engine 5</p>
         </div>
       </div>
     )}
@@ -103,7 +175,7 @@ const Projects = () => {
           <p className="section-label">Projects</p>
           <h2 className="section-title">Selected builds that show range.</h2>
           <p className="section-lead">
-            Distributed systems, AI tooling, and mobile — private repos, but the architecture and stack are real.
+            Production repos — architecture, design decisions, and tech stack outlined below.
           </p>
         </motion.div>
 
@@ -120,18 +192,37 @@ const Projects = () => {
               <div className={`p-6 ${project.featured ? 'flex flex-col justify-center' : ''}`}>
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <span className="font-mono text-xs text-accent">{project.period}</span>
-                  <span className="inline-flex items-center gap-1 text-xs text-ink-3">
-                    <HiLockClosed className="w-3 h-3" />
-                    Private repo
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {project.wip && (
+                      <span className="inline-flex items-center gap-1 text-xs text-ink-3">
+                        <HiClock className="w-3 h-3" />
+                        In progress
+                      </span>
+                    )}
+                    {!project.githubUrl && !project.wip && (
+                      <span className="inline-flex items-center gap-1 text-xs text-ink-3">
+                        <HiLockClosed className="w-3 h-3" />
+                        Private repo
+                      </span>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-accent hover:text-ink transition-colors"
+                      >
+                        <SiGithub className="w-3 h-3" />
+                        View code
+                      </a>
+                    )}
+                  </div>
                 </div>
                 <h3 className="text-xl font-semibold text-ink mb-1">{project.title}</h3>
                 <p className="text-sm text-ink-2 leading-relaxed mb-5">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
-                    <span key={tech} className="chip !text-[11px]">
-                      {tech}
-                    </span>
+                    <span key={tech} className="chip !text-[11px]">{tech}</span>
                   ))}
                 </div>
                 <div className="flex items-center gap-2 text-ink-3">
@@ -145,10 +236,41 @@ const Projects = () => {
         </div>
 
         <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45, delay: 0.4 }}
+          className="mt-12"
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent mb-5">Open source</p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {openSource.map((repo, index) => (
+              <motion.a
+                key={repo.title}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.45 + index * 0.07 }}
+                className="card hover:!border-accent/40 transition-colors group"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <SiGithub className="w-4 h-4 text-ink-3 group-hover:text-accent transition-colors" aria-hidden="true" />
+                  <HiExternalLink className="w-3.5 h-3.5 text-ink-3 group-hover:text-accent transition-colors" aria-hidden="true" />
+                </div>
+                <h3 className="text-base font-semibold text-ink mb-1">{repo.title}</h3>
+                <p className="text-xs text-ink-2 leading-relaxed mb-3">{repo.description}</p>
+                <p className="font-mono text-[10px] text-ink-3">{repo.stack}</p>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.35 }}
-          className="mt-10 text-center"
+          transition={{ duration: 0.4, delay: 0.6 }}
+          className="mt-8 text-center"
         >
           <a
             href="https://github.com/ahmed-khaled-4"
