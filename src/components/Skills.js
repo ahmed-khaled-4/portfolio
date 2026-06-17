@@ -96,11 +96,21 @@ const Skills = () => {
                 {group.label}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {group.items.map(({ name, Icon }) => (
-                  <span key={name} className="chip">
+                {group.items.map(({ name, Icon }, itemIndex) => (
+                  <motion.span
+                    key={name}
+                    className="chip"
+                    initial={{ opacity: 0, scale: 0.78, y: 8 }}
+                    animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                    transition={{
+                      duration: 0.38,
+                      delay: groupIndex * 0.08 + itemIndex * 0.055,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
                     <Icon className="w-3.5 h-3.5 text-accent" />
                     {name}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
